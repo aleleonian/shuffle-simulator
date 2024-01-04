@@ -1,0 +1,39 @@
+@font-face {
+  font-family: "Poker";
+  src: local("Poker Regular"), local("Poker-Regular"),
+    url('./fonts/Poker.ttf"') format("ttf");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Cowboy Junior";
+  src: local("Poker Junior"), local("Cowboy-Junior"),
+    url("./fonts/CowboyJunior-GO6Dq.ttf") format("ttf");
+}
+
+body {
+  background-color: green;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  font-family: "Cowboy Junior";
+  text-align: center;
+}
+
+.poker-table {
+  display: flex;
+  flex-direction: row;
+}
+
+.card {
+  margin-right: -90px; /* Negative margin to overlap cards */
+  position: relative;
+  z-index: 1;
+}
+
+.card:not(:last-child) {
+  margin-right: 20x; /* Adjust the spacing between cards */
+}
