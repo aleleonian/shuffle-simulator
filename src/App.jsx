@@ -1,5 +1,5 @@
-import { PokerTable } from "./components/PokerTable"
 import { Header } from "./components/Header";
+import { Body } from "./components/Body";
 import './assets/index.css';
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <Header />
-      <PokerTable />
+      <Body />
     </>
   )
 }

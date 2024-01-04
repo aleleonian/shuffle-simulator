@@ -26,14 +26,15 @@ body {
 .poker-table {
   display: flex;
   flex-direction: row;
+  flex-wrap:wrap;
+  justify-content: space-around;
 }
 
 .card {
-  margin-right: -90px; /* Negative margin to overlap cards */
-  position: relative;
+  margin-right: -75px; /* Negative margin to overlap cards */
   z-index: 1;
 }
 
-.card:not(:last-child) {
-  margin-right: 20x; /* Adjust the spacing between cards */
+.body {
+  text-align: center;
 }
