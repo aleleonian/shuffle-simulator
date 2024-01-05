@@ -4,7 +4,7 @@ import { Grid } from "@mui/material";
 
 export function Body() {
     return (
-        <Grid item>
+        <Grid item xs={12}>
             <PokerTable />
         </Grid>
     )

@@ -17,10 +17,7 @@ export function BottomMenu() {
     };
 
     return (
-        <Grid item sx={{
-            top : "2000px",
-            backgroundColor: 'red'
-        }}>
+        <Grid className='bottom-menu'>
             <ButtonGroup variant="contained" aria-label="outlined primary button group">
                 <Button onClick={handleClickOpen}>Deck Order Configuration</Button>
                 <Button>Shuffle Configuration</Button>
