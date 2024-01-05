@@ -3,8 +3,10 @@ import { PokerTable } from "./PokerTable"
 
 export function Body() {
     return (
-        <div className="body">
-            <PokerTable />
+        <div className="app-body">
+            <main>
+                <PokerTable />
+            </main>
         </div>
     )
 }
