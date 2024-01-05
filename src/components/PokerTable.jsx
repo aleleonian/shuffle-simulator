@@ -1,6 +1,7 @@
 import React from "react";
 import { getCard } from 'standard-deck-react';
 import { useStateContext } from './StateContext';
+import { generateUUID } from "standard-deck-react";
 
 export function PokerTable({ deck }) {
 
@@ -16,5 +17,5 @@ export function PokerTable({ deck }) {
 }
 
 function createDeck(cardsArray) {
-    return cardsArray.map(card => <div className="card">{getCard(card)}</div>);
+    return cardsArray.map(card => <div key={generateUUID()} className="card">{getCard(card)}</div>);
 }

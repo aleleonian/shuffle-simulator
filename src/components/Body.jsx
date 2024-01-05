@@ -1,12 +1,11 @@
 import React from "react";
 import { PokerTable } from "./PokerTable"
+import { Grid } from "@mui/material";
 
 export function Body() {
     return (
-        <div className="app-body">
-            <main>
-                <PokerTable />
-            </main>
-        </div>
+        <Grid item>
+            <PokerTable />
+        </Grid>
     )
 }
