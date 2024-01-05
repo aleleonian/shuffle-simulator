@@ -18,8 +18,8 @@ export function BottomMenu() {
     return (
         <div className='bottom-menu'>
             <ButtonGroup variant="contained" aria-label="outlined primary button group">
-                <Button onClick={handleClickOpen}>Deck Order</Button>
-                <Button>Shuffle Conf</Button>
+                <Button onClick={handleClickOpen}>Deck Order Configuration</Button>
+                <Button>Shuffle Configuration</Button>
                 <Button>About</Button>
             </ButtonGroup>
 
