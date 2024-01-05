@@ -8,6 +8,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Paper from '@mui/material/Paper';
 import Draggable from 'react-draggable';
 import { DeckOrderRadioButtons } from './DeckOrderRadioButtons';
+import { useStateContext } from './StateContext';
 
 function PaperComponent(props) {
   return (
@@ -21,10 +22,13 @@ function PaperComponent(props) {
 }
 
 export default function DeckOrderDialog({ open, handleClose }) {
+  const myContext = useStateContext();
 
+  
   function handleClick(event) {
+    console.log(myContext);
     const value = event.target.value;
-    alert('wadaaaaah ' + value);
+    myContext.updateState(["kc"]);
   }
   return (
     <React.Fragment>
