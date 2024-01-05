@@ -16,5 +16,5 @@ export function PokerTable({ deck }) {
 }
 
 function createDeck(cardsArray) {
-    return cardsArray.map(card => getCard(card));
+    return cardsArray.map(card => <div className="card">{getCard(card)}</div>);
 }
