@@ -8,15 +8,15 @@ import FormLabel from '@mui/material/FormLabel';
 export function DeckOrderRadioButtons({ handleClick }) {
     return (
         <FormControl>
-            <FormLabel id="demo-row-radio-buttons-group-label">Gender</FormLabel>
+            {/* <FormLabel id="demo-row-radio-buttons-group-label">Deck order:</FormLabel> */}
             <RadioGroup
                 row
                 aria-labelledby="demo-row-radio-buttons-group-label"
                 name="row-radio-buttons-group"
             >
-                <FormControlLabel value="female" onClick={handleClick} control={<Radio />} label="Female" />
-                <FormControlLabel value="male" onClick={handleClick} control={<Radio />} label="Male" />
-                <FormControlLabel value="other" onClick={handleClick} control={<Radio />} label="Other" />
+                <FormControlLabel value="ndo" onClick={handleClick} control={<Radio />} label="New deck order" />
+                <FormControlLabel value="tamariz" onClick={handleClick} control={<Radio />} label="Tamariz Mnemonica" />
+                <FormControlLabel value="other" onClick={handleClick} control={<Radio />} label="Custom" />
             </RadioGroup>
         </FormControl>
     );

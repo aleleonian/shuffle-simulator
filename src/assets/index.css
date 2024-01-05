@@ -28,11 +28,11 @@ body {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-around;
+  /* justify-content: space-around; */
 }
 
 .card {
-  margin-right: -75px; /* Negative margin to overlap cards */
+  margin-right: -75px;
   z-index: 1;
 }
 

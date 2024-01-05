@@ -1,11 +1,11 @@
 // StateContext.js
 import { createContext, useContext, useState } from 'react';
-import { ndo } from "../data/newDeckOrder";
+import { newDeckOrder } from "../data/deckStacks";
 
 const StateContext = createContext();
 
 const StateProvider = ({ children }) => {
-    const [state, setState] = useState(ndo);
+    const [state, setState] = useState(newDeckOrder);
 
     const updateState = (newState) => {
         setState(newState);

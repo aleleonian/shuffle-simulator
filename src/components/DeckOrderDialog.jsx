@@ -9,6 +9,7 @@ import Paper from '@mui/material/Paper';
 import Draggable from 'react-draggable';
 import { DeckOrderRadioButtons } from './DeckOrderRadioButtons';
 import { useStateContext } from './StateContext';
+import { tamarizMnemonica } from '../data/deckStacks';
 
 function PaperComponent(props) {
   return (
@@ -28,7 +29,7 @@ export default function DeckOrderDialog({ open, handleClose }) {
   function handleClick(event) {
     console.log(myContext);
     const value = event.target.value;
-    myContext.updateState(["kc"]);
+    myContext.updateState(tamarizMnemonica);
   }
   return (
     <React.Fragment>
@@ -42,10 +43,6 @@ export default function DeckOrderDialog({ open, handleClose }) {
           Deck order configuration
         </DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            To subscribe to this website, please enter your email address here. We
-            will send updates occasionally.
-          </DialogContentText>
           <DeckOrderRadioButtons handleClick={handleClick} />
         </DialogContent>
         <DialogActions>
