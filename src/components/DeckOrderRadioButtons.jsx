@@ -3,7 +3,6 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
 
 export function DeckOrderRadioButtons({ handleClick }) {
     return (
@@ -14,9 +13,9 @@ export function DeckOrderRadioButtons({ handleClick }) {
                 aria-labelledby="demo-row-radio-buttons-group-label"
                 name="row-radio-buttons-group"
             >
-                <FormControlLabel value="ndo" onClick={handleClick} control={<Radio />} label="New deck order" />
-                <FormControlLabel value="tamariz" onClick={handleClick} control={<Radio />} label="Tamariz Mnemonica" />
-                <FormControlLabel value="other" onClick={handleClick} control={<Radio />} label="Custom" />
+                <FormControlLabel value="newDeckOrder" onChange={handleClick} control={<Radio />} label="New deck order" />
+                <FormControlLabel value="tamarizMnemonica" onChange={handleClick} control={<Radio />} label="Tamariz Mnemonica" />
+                <FormControlLabel value="other" onChange={handleClick} control={<Radio />} label="Custom" />
             </RadioGroup>
         </FormControl>
     );
