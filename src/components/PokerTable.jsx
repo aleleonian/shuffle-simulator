@@ -3,11 +3,11 @@ import { getCard } from 'standard-deck-react';
 import { useStateContext } from './StateContext';
 import { generateUUID } from "standard-deck-react";
 
-export function PokerTable({ deck }) {
+export function PokerTable() {
 
     const myContext = useStateContext();
 
-    const fullDeck = createDeck(myContext.state);
+    const fullDeck = createDeck(myContext.state.order);
 
     return (
         <div className="poker-table">
