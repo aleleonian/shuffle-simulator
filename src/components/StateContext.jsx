@@ -1,11 +1,11 @@
 // StateContext.js
 import { createContext, useContext, useState } from 'react';
-import { newDeckOrder } from "../data/deckStacks";
+import { stacks } from "../data/deckStacks";
 
 const StateContext = createContext();
 
 const StateProvider = ({ children }) => {
-    const [state, setState] = useState(newDeckOrder);
+    const [state, setState] = useState(stacks.find(stack => stack.name == 'newDeckOrder').order);
 
     const updateState = (newState) => {
         setState(newState);

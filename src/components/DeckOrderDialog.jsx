@@ -8,8 +8,7 @@ import Paper from '@mui/material/Paper';
 import Draggable from 'react-draggable';
 import { DeckOrderRadioButtons } from './DeckOrderRadioButtons';
 import { useStateContext } from './StateContext';
-import { tamarizMnemonica } from '../data/deckStacks';
-import { newDeckOrder } from '../data/deckStacks';
+import { stacks } from '../data/deckStacks';
 
 function PaperComponent(props) {
   return (
@@ -24,14 +23,11 @@ function PaperComponent(props) {
 
 export default function DeckOrderDialog({ open, handleClose }) {
   const myContext = useStateContext();
-  const stacks = [];
-  stacks['tamarizMnemonica'] = tamarizMnemonica;
-  stacks['newDeckOrder'] = newDeckOrder;
 
   function handleClick(event) {
     const chosenOrder = event.target.value;
     if (!chosenOrder || chosenOrder == "other") return;
-    myContext.updateState(stacks[chosenOrder]);
+    myContext.updateState(stacks.find(stack => stack.name == chosenOrder).order);
   }
   return (
     <React.Fragment>
@@ -49,9 +45,8 @@ export default function DeckOrderDialog({ open, handleClose }) {
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={handleClose}>
-            Cancel
+            Close
           </Button>
-          <Button onClick={handleClose}>Subscribe</Button>
         </DialogActions>
       </Dialog>
     </React.Fragment>
