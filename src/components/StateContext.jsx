@@ -8,11 +8,12 @@ const StateProvider = ({ children }) => {
     const [deckOrderState, setDeckOrderState] = useState(stacks.find(stack => stack.name == 'newDeckOrder'));
     const [shuffleConfState, setShuffleConfState] = useState("faro-out");
 
-    const updateDeckOrderState = (newState) => {
-        setDeckOrderState(newState);
+    const updateDeckOrderState = (newDeckOrderState) => {
+        console.log("About to set new deck order state->", newDeckOrderState);
+        setDeckOrderState(newDeckOrderState);
     };
-    const updateShuffleConfState = (newState) => {
-        setShuffleConfState(newState);
+    const updateShuffleConfState = (newShuffleConfState) => {
+        setShuffleConfState(newShuffleConfState);
     };
 
     return (

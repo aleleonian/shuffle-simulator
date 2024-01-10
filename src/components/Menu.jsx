@@ -5,7 +5,7 @@ import DeckOrderDialog from './DeckOrderDialog';
 import ShuffleConfDialog from './ShuffleConfDialog';
 import { Grid } from '@mui/material';
 
-export function BottomMenu() {
+export function Menu() {
 
     const [dodOpen, setDODOpen] = React.useState(false);
     const [scdOpen, setSCDOpen] = React.useState(false);

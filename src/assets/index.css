@@ -18,7 +18,6 @@ body {
   padding: 0;
 }
 
-
 .header {
   font-family: "Cowboy Junior";
   text-align: center;
@@ -28,8 +27,7 @@ body {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  height: 70vh;
-  /* justify-content: space-around; */
+  height: 30vh;
 }
 
 .card {
@@ -41,8 +39,6 @@ body {
   text-align: center;
 }
 
-/* .app-body {
-} */
-.configuration-info {
+.body-element {
   text-align: center;
 }

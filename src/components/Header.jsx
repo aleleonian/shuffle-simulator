@@ -7,6 +7,6 @@ export function Header() {
             innerHeight : "200px"
         }}>
             <h1>Shuffle Simulator, bo.</h1>
-        </Grid >
+        </Grid>
     )
 }

@@ -1,6 +1,6 @@
 import { Header } from "./components/Header";
 import { Body } from "./components/Body";
-import { BottomMenu } from './components/BottomMenu';
+import { Menu } from './components/Menu';
 import { StateProvider } from './components/StateContext';
 import Grid from '@mui/material/Grid';
 
@@ -16,11 +16,9 @@ function App() {
           direction="column"
           justifyContent="center"
           alignItems="stretch">
-
+          <Menu />
           <Header />
           <Body />
-          <BottomMenu />
-
         </Grid>
       </StateProvider>
     </>

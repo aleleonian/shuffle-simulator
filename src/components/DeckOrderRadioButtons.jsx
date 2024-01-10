@@ -11,7 +11,6 @@ export function DeckOrderRadioButtons({ handleClick }) {
 
     return (
         <FormControl>
-            {/* <FormLabel id="demo-row-radio-buttons-group-label">Deck order:</FormLabel> */}
             <RadioGroup
                 row
                 aria-labelledby="demo-row-radio-buttons-group-label"

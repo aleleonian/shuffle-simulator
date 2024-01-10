@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import { getCard } from 'standard-deck-react';
 import { useStateContext } from './StateContext';
 import { generateUUID } from "standard-deck-react";

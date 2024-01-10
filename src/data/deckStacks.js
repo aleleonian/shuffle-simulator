@@ -1,7 +1,8 @@
 export const stacks = [
     {
         name: "newDeckOrder",
-        title: "New deck order", order: [
+        title: "New deck order",
+        order: [
             // Ace to King of Hearts
             "ah", "2h", "3h", "4h", "5h", "6h", "7h", "8h", "9h", "10h", "jh", "qh", "kh",
 
