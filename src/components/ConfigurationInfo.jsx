@@ -5,7 +5,6 @@ import { Grid, TextField } from "@mui/material";
 export function ConfigurationInfo() {
 
     const myContext = useStateContext();
-    console.log(myContext);
     return (
         <Grid item xs={12}>
             <div className="configuration-info">
