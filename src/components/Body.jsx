@@ -25,7 +25,6 @@ export function Body() {
     const myContext = useStateContext();
 
     function handleClick() {
-
         const shuffledDeck = shuffle(myContext.deckOrderState.order, myContext.shuffleConfState);
         let currentDeckOrderState = {...myContext.deckOrderState};
         currentDeckOrderState.order = shuffledDeck;
