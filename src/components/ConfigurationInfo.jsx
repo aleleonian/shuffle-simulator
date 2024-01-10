@@ -13,7 +13,7 @@ export function ConfigurationInfo() {
                     label="Deck order"
                     id="outlined-start-adornment"
                     sx={{ m: 1, width: '25ch' }}
-                    value={myContext.state.title}
+                    value={myContext.deckOrderState.title}
                 />
             </div>
         </Grid>
