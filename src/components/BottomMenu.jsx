@@ -2,29 +2,32 @@ import React from 'react'
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import DeckOrderDialog from './DeckOrderDialog';
+import ShuffleConfDialog from './ShuffleConfDialog';
 import { Grid } from '@mui/material';
 
 export function BottomMenu() {
 
-    const [open, setOpen] = React.useState(false);
-
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-    };
+    const [dodOpen, setDODOpen] = React.useState(false);
+    const [scdOpen, setSCDOpen] = React.useState(false);
 
     return (
         <Grid className='bottom-menu'>
             <ButtonGroup variant="contained" aria-label="outlined primary button group">
-                <Button onClick={handleClickOpen}>Deck Order Configuration</Button>
-                <Button>Shuffle Configuration</Button>
+                <Button onClick={() => {
+                    setDODOpen(true);
+                }}>Deck Order Configuration</Button>
+                <Button  onClick={() => {
+                    setSCDOpen(true);
+                }}>Shuffle Configuration</Button>
                 <Button>About</Button>
             </ButtonGroup>
 
-            <DeckOrderDialog open={open} handleClose={handleClose} />
+            <DeckOrderDialog open={dodOpen} handleClose={() => {
+                setDODOpen(false);
+            }} />
+            <ShuffleConfDialog open={scdOpen} handleClose={() => {
+                setSCDOpen(false);
+            }} />
         </Grid>
     );
 }
