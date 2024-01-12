@@ -21,6 +21,7 @@ body {
 .header {
   font-family: "Cowboy Junior";
   text-align: center;
+  margin-top: 50px;
 }
 
 .poker-table {
@@ -39,6 +40,14 @@ body {
   text-align: center;
 }
 
+.top-menu {
+  display: flex;
+  justify-content: center;
+}
+
 .body-element {
   text-align: center;
+}
+.configuration-element {
+  margin-top: 25px;
 }

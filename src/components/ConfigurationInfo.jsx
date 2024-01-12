@@ -6,7 +6,7 @@ export function ConfigurationInfo() {
 
     const myContext = useStateContext();
     return (
-        <div>
+        <div className="configuration-element">
             <TextField
                 label="Deck order"
                 id="do-outlined-start-adornment"

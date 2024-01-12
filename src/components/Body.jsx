@@ -1,7 +1,6 @@
 import React from "react";
 import { PokerTable } from "./PokerTable"
-import { ConfigurationInfo } from "./ConfigurationInfo"
-import { Grid } from "@mui/material";
+// import { ConfigurationInfo } from "./ConfigurationInfo"
 import Button from '@mui/material/Button';
 import { useStateContext } from './StateContext';
 import { faroShuffle } from "../functions/faroShuffle";
@@ -26,19 +25,20 @@ export function Body() {
 
     function handleClick() {
         const shuffledDeck = shuffle(myContext.deckOrderState.order, myContext.shuffleConfState);
-        let currentDeckOrderState = {...myContext.deckOrderState};
+        let currentDeckOrderState = { ...myContext.deckOrderState };
         currentDeckOrderState.order = shuffledDeck;
         myContext.updateDeckOrderState(currentDeckOrderState);
     }
 
     return (
-        <Grid item xs={12} className="body-element">
-            <ConfigurationInfo />
+        <div className="body-element">
             <PokerTable />
-            <Button variant="contained" onClick={handleClick} size="large" color="primary">Shuffle!</Button>
-            {/* <Button variant="contained" onClick={() => {
-                shuffle(myContext.deckOrderState.order, myContext.shuffleConfState, myContext.updateDeckOrderState);
-            }} size="large" color="primary">Shuffle!</Button> */}
-        </Grid>
+            <Button
+                color="success"
+                variant="contained"
+                onClick={handleClick}
+                size="large">
+                Shuffle!</Button>
+        </div>
     )
 }
