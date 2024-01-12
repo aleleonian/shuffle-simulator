@@ -1,6 +1,6 @@
 import React from "react";
 import { PokerTable } from "./PokerTable"
-// import { ConfigurationInfo } from "./ConfigurationInfo"
+import { ConfigurationInfo } from "./ConfigurationInfo"
 import Button from '@mui/material/Button';
 import { useStateContext } from './StateContext';
 import { faroShuffle } from "../functions/faroShuffle";
@@ -33,6 +33,7 @@ export function Body() {
     return (
         <div className="body-element">
             <PokerTable />
+            <ConfigurationInfo />
             <Button
                 color="success"
                 variant="contained"

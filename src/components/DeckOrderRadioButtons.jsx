@@ -5,7 +5,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import { useStateContext } from './StateContext';
 
-export function DeckOrderRadioButtons({ handleClick }) {
+export function DeckOrderRadioButtons({ clickHandler }) {
 
     const chosenDeckOrder = useStateContext().deckOrderState.name;
 
@@ -16,9 +16,9 @@ export function DeckOrderRadioButtons({ handleClick }) {
                 aria-labelledby="demo-row-radio-buttons-group-label"
                 name="row-radio-buttons-group"
             >
-                <FormControlLabel value="newDeckOrder" onChange={handleClick} control={<Radio checked={chosenDeckOrder === "newDeckOrder" ? true : false} />} label="New deck order" />
-                <FormControlLabel value="tamarizMnemonica" onChange={handleClick} control={<Radio checked={chosenDeckOrder === "tamarizMnemonica" ? true : false} />} label="Tamariz Mnemonica" />
-                <FormControlLabel value="other" onChange={handleClick} control={<Radio checked={chosenDeckOrder === "other" ? true : false} />} label="Custom" />
+                <FormControlLabel value="newDeckOrder" onChange={clickHandler} control={<Radio checked={chosenDeckOrder === "newDeckOrder" ? true : false} />} label="New deck order" />
+                <FormControlLabel value="tamarizMnemonica" onChange={clickHandler} control={<Radio checked={chosenDeckOrder === "tamarizMnemonica" ? true : false} />} label="Tamariz Mnemonica" />
+                <FormControlLabel value="other" onChange={clickHandler} control={<Radio checked={chosenDeckOrder === "other" ? true : false} />} label="Custom" />
             </RadioGroup>
         </FormControl>
     );

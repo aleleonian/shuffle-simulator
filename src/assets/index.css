@@ -28,7 +28,8 @@ body {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  height: 30vh;
+  /* height: 30vh; */
+  margin-bottom: 10vh;
 }
 
 .card {
@@ -49,5 +50,7 @@ body {
   text-align: center;
 }
 .configuration-element {
-  margin-top: 25px;
+  margin-bottom: 5vh;
+  display: flex;
+  justify-content: center;
 }

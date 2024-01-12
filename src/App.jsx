@@ -11,7 +11,7 @@ function App() {
   return (
     <>
       <StateProvider>
-          <Menu />
+          {/* <Menu /> */}
           <Header />
           <Body />
       </StateProvider>

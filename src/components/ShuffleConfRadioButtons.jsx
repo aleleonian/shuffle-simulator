@@ -5,7 +5,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import { useStateContext } from './StateContext';
 
-export function ShuffleConfRadioButtons({ handleClick }) {
+export function ShuffleConfRadioButtons({ clickHandler }) {
 
     const chosenShuffle = useStateContext().shuffleConfState;
 
@@ -16,8 +16,8 @@ export function ShuffleConfRadioButtons({ handleClick }) {
                 aria-labelledby="demo-row-radio-buttons-group-label"
                 name="row-radio-buttons-group"
             >
-                <FormControlLabel value="faro-in" onChange={handleClick} control={<Radio checked={chosenShuffle === "faro-in" ? true : false} />} label="Faro in" />
-                <FormControlLabel value="faro-out" onChange={handleClick} control={<Radio checked={chosenShuffle === "faro-out" ? true : false} />} label="Faro out" />
+                <FormControlLabel value="faro-in" onChange={clickHandler} control={<Radio checked={chosenShuffle === "faro-in" ? true : false} />} label="Faro in" />
+                <FormControlLabel value="faro-out" onChange={clickHandler} control={<Radio checked={chosenShuffle === "faro-out" ? true : false} />} label="Faro out" />
             </RadioGroup>
         </FormControl>
     );
