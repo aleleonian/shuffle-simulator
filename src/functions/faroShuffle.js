@@ -49,5 +49,5 @@ export function antiFaro(deck, type) {
         secondHalf.push(secondCard);
     }
     if (type === FARO_OUT) return firstHalf.concat(secondHalf);
-    else return secondHalf.concat(firstHalf);
+    else return firstHalf.concat(secondHalf);
 }

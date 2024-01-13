@@ -63,7 +63,7 @@ export function ConfigurationInfo() {
             /> */}
 
             <DeckBuilderDialog open={deckBuilderOpen} handleClose={() => {
-                // setSCDOpen(false);
+                setDeckBuilderOpen(false);
             }} />
         </div>
 

@@ -31,7 +31,6 @@ function App() {
     <>
       <StateProvider>
         <ThemeProvider theme={theme}>
-          {/* <Menu /> */}
           <Header />
           <Body />
         </ThemeProvider>
