@@ -21,6 +21,7 @@ export function ConfigurationInfo() {
 
     function shuffleConfHandler(event) {
         const chosenShuffle = event.target.value;
+        console.log(chosenShuffle);
         myContext.updateShuffleConfState(chosenShuffle);
     }
 

@@ -4,7 +4,7 @@ import { ConfigurationInfo } from "./ConfigurationInfo"
 import Button from '@mui/material/Button';
 import { useStateContext } from './StateContext';
 import { faroShuffle } from "../functions/faroShuffle";
-import { stacks } from '../data/deckStacks';
+import { antiFaro } from "../functions/faroShuffle";
 
 function shuffle(deck, shuffleType) {
 
@@ -16,6 +16,10 @@ function shuffle(deck, shuffleType) {
             return faroShuffle(deck, FARO_IN);
         case 'faro-out':
             return faroShuffle(deck, FARO_OUT);
+        case 'anti-faro-in':
+            return antiFaro(deck, FARO_IN);
+        case 'anti-faro-out':
+            return antiFaro(deck, FARO_OUT);
     }
 }
 

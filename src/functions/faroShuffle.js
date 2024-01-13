@@ -21,6 +21,33 @@ export function faroShuffle(deck, type = FARO_OUT) {
 
         shuffledDeck.push(secondCard);
     }
-    
+
     return shuffledDeck;
+}
+
+export function antiFaro(deck, type) {
+
+
+    const firstHalf = [];
+    const secondHalf = [];
+    const deckLength = deck.length;
+
+    for (let i = 0; i < deckLength - 1; i += 2) {
+
+        let firstCard, secondCard;
+
+        if (type === FARO_OUT) {
+            firstCard = deck[i];
+            secondCard = deck[i + 1];
+        }
+        else {
+            secondCard = deck[i];
+            firstCard = deck[i + 1];
+        }
+
+        firstHalf.push(firstCard);
+        secondHalf.push(secondCard);
+    }
+    if (type === FARO_OUT) return firstHalf.concat(secondHalf);
+    else return secondHalf.concat(firstHalf);
 }
