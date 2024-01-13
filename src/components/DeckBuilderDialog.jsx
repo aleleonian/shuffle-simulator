@@ -8,6 +8,7 @@ import Paper from '@mui/material/Paper';
 import Draggable from 'react-draggable';
 import { useStateContext } from './StateContext';
 import { stacks } from '../data/deckStacks';
+import { PokerCardBuilderDialog } from './PokerCardBuilderDialog';
 
 function PaperComponent(props) {
     return (
@@ -32,7 +33,13 @@ export function DeckBuilderDialog({ open, handleClose }) {
     }
     return (
         <React.Fragment>
-            <Dialog
+
+            <PokerCardBuilderDialog
+                open={open}
+                onClose={handleClose}
+            />
+
+            {/* <Dialog
                 open={open}
                 onClose={handleClose}
                 PaperComponent={PaperComponent}
@@ -49,7 +56,7 @@ export function DeckBuilderDialog({ open, handleClose }) {
                         Close
                     </Button>
                 </DialogActions>
-            </Dialog>
+            </Dialog> */}
         </React.Fragment>
     );
 }
