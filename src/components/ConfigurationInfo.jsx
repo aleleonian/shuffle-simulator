@@ -2,18 +2,29 @@ import React from "react";
 import { useStateContext } from './StateContext';
 import { DeckOrderRadioButtons } from './DeckOrderRadioButtons';
 import { ShuffleConfRadioButtons } from './ShuffleConfRadioButtons';
+import { DeckBuilderDialog } from './DeckBuilderDialog';
 
 import { stacks } from '../data/deckStacks';
 
-import { Box, TextField } from "@mui/material";
+import { Box } from "@mui/material";
 
 export function ConfigurationInfo() {
 
     const myContext = useStateContext();
 
+    const [deckBuilderOpen, setDeckBuilderOpen] = React.useState(false);
+
     function deckOrderHandler(event) {
         const chosenOrder = event.target.value;
-        if (!chosenOrder || chosenOrder == "other") return;
+        console.log("chosenOrder->", chosenOrder)
+        switch (chosenOrder) {
+            case false:
+            case undefined:
+                return;
+            case 'other':
+                return setDeckBuilderOpen(true)
+        }
+
         const chosenStack = stacks.find(stack => stack.name == chosenOrder);
         console.log("chosenStack->", chosenStack);
         myContext.updateDeckOrderState(chosenStack);
@@ -50,6 +61,11 @@ export function ConfigurationInfo() {
                 sx={{ m: 1, width: '25ch' }}
                 value={myContext.shuffleConfState}
             /> */}
+
+            <DeckBuilderDialog open={deckBuilderOpen} handleClose={() => {
+                // setSCDOpen(false);
+            }} />
         </div>
+
     )
 }
