@@ -50,7 +50,7 @@ const CardStack = () => {
   return (
     <Container sx={{ margin: '100px auto', textAlign: 'center' }}>
       <Typography variant="h5" gutterBottom>Stack:</Typography>
-      <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'space-around', mb: 2 }}>
         {/* <Typography variant="body1">{stack.join(', ')}</Typography> */}
         {stack.map((card, index) => (
           <React.Fragment key={index}>{card}</React.Fragment>
@@ -106,11 +106,11 @@ const CardStack = () => {
         </FormControl>
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
-        <Button variant="contained" onClick={addCard}>
+        <Button variant="contained" color="success" sx={{ mr: 5 }} onClick={addCard}>
           Add card
         </Button>
-        <Button variant="contained" onClick={deleteLastCard}>
-          Delete last card
+        <Button variant="contained" color="success" onClick={deleteLastCard}>
+          Delete card
         </Button>
       </Box>
     </Container>
