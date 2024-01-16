@@ -2,13 +2,41 @@ import React, { useState } from 'react';
 import { FormControl, InputLabel, Select, MenuItem, Button, Typography, Box, Container } from '@mui/material';
 
 const CardStack = () => {
-  const [values, setValues] = useState('a');
-  const [suits, setSuits] = useState('c');
+  const [values, setValues] = useState('');
+  const [suits, setSuits] = useState('');
   const [stack, setStack] = useState([]);
 
+  const Emoji = React.memo(({ label, symbol }) =>
+    <span role="img" aria-label={label}>
+      {String.fromCodePoint(symbol)}
+    </span>)
+
   const addCard = () => {
-    const cardText = `${values} ${suits}`;
-    setStack([...stack, cardText]);
+    let suit;
+    switch (suits) {
+      case 'c':
+        suit = <span>&#x2663;&#xFE0F;</span>;
+        break;
+      case 'h':
+        suit = <span>&#x2764;&#xFE0F;</span>;
+        break;
+      case 's':
+        suit = <span>&#x2660;&#xFE0F;</span>;
+        break;
+      case 'd':
+        suit = <span>&#x1F538;</span>;
+        break;
+    }
+    // const cardText = suit;
+    const cardElement = (
+      <div key={stack.length}>
+        {values} {suit}
+      </div>
+    );
+
+    // const cardText = `${values}${suit}`;
+
+    setStack([...stack, cardElement]);
   };
 
   const deleteLastCard = () => {
@@ -21,9 +49,12 @@ const CardStack = () => {
 
   return (
     <Container sx={{ margin: '100px auto', textAlign: 'center' }}>
+      <Typography variant="h5" gutterBottom>Stack:</Typography>
       <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
-        <Typography variant="h5">Stack:</Typography>
-        <Typography variant="body1">{stack.join(', ')}</Typography>
+        {/* <Typography variant="body1">{stack.join(', ')}</Typography> */}
+        {stack.map((card, index) => (
+          <React.Fragment key={index}>{card}</React.Fragment>
+        ))}
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <FormControl sx={{ m: 1, minWidth: 120 }}>
@@ -38,7 +69,8 @@ const CardStack = () => {
             }}
           >
             {/* Options for values */}
-            <MenuItem value="a" selected>a</MenuItem>
+            <MenuItem value="">Select Value</MenuItem>
+            <MenuItem value="A">A</MenuItem>
             <MenuItem value="2">2</MenuItem>
             <MenuItem value="3">3</MenuItem>
             <MenuItem value="4">5</MenuItem>
@@ -48,9 +80,9 @@ const CardStack = () => {
             <MenuItem value="8">8</MenuItem>
             <MenuItem value="9">9</MenuItem>
             <MenuItem value="10">10</MenuItem>
-            <MenuItem value="j">J</MenuItem>
-            <MenuItem value="q">Q</MenuItem>
-            <MenuItem value="k">K</MenuItem>
+            <MenuItem value="J">J</MenuItem>
+            <MenuItem value="Q">Q</MenuItem>
+            <MenuItem value="K">K</MenuItem>
           </Select>
         </FormControl>
         <FormControl sx={{ m: 1, minWidth: 120 }}>
@@ -65,10 +97,11 @@ const CardStack = () => {
             }}
           >
             {/* Options for suits */}
-            <MenuItem value="c" selected>c</MenuItem>
-            <MenuItem value="h">h</MenuItem>
-            <MenuItem value="s">s</MenuItem>
-            <MenuItem value="d">d</MenuItem>
+            <MenuItem value="">Select Suit</MenuItem>
+            <MenuItem value="c">C</MenuItem>
+            <MenuItem value="h">H</MenuItem>
+            <MenuItem value="s">S</MenuItem>
+            <MenuItem value="d">D</MenuItem>
           </Select>
         </FormControl>
       </Box>
