@@ -1,19 +1,42 @@
 import React, { useState } from 'react';
 import { FormControl, InputLabel, Select, MenuItem, Button, Typography, Box, Container } from '@mui/material';
+import { useStateContext } from './StateContext';
 
 const CardStack = () => {
   const [values, setValues] = useState('');
   const [suits, setSuits] = useState('');
   const [stack, setStack] = useState([]);
+  const myContext = useStateContext();
 
   const Emoji = React.memo(({ label, symbol }) =>
     <span role="img" aria-label={label}>
       {String.fromCodePoint(symbol)}
     </span>)
 
+  const saveStack = () => {
+    let currentDeckOrderState = { ...myContext.deckOrderState };
+    currentDeckOrderState.order = stack;
+    myContext.updateDeckOrderState(currentDeckOrderState);
+  }
+
   const addCard = () => {
-    let suit;
-    switch (suits) {
+
+    const cardText = `${values}${suits}`;
+
+    setStack([...stack, cardText]);
+  };
+
+  const translateCard = (cardText) => {
+    let value, suit;
+    if (cardText.length == 3) {
+      value = cardText[0];
+      value += cardText[1];
+    }
+    else value = cardText[0];
+
+    suit = cardText[cardText.length - 1];
+
+    switch (suit) {
       case 'c':
         suit = <span>&#x2663;&#xFE0F;</span>;
         break;
@@ -27,18 +50,14 @@ const CardStack = () => {
         suit = <span>&#x1F538;</span>;
         break;
     }
-    // const cardText = suit;
     const cardElement = (
       <div key={stack.length}>
-        {values} {suit}
+        {value} {suit}
       </div>
     );
+    return cardElement;
 
-    // const cardText = `${values}${suit}`;
-
-    setStack([...stack, cardElement]);
-  };
-
+  }
   const deleteLastCard = () => {
     if (stack.length > 0) {
       const updatedStack = [...stack];
@@ -50,10 +69,10 @@ const CardStack = () => {
   return (
     <Container sx={{ margin: '100px auto', textAlign: 'center' }}>
       <Typography variant="h5" gutterBottom>Stack:</Typography>
-      <Box sx={{ display: 'flex', justifyContent: 'space-around', mb: 2 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
         {/* <Typography variant="body1">{stack.join(', ')}</Typography> */}
         {stack.map((card, index) => (
-          <React.Fragment key={index}>{card}</React.Fragment>
+          <React.Fragment key={index}>{translateCard(card)}</React.Fragment>
         ))}
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
@@ -111,6 +130,11 @@ const CardStack = () => {
         </Button>
         <Button variant="contained" color="success" onClick={deleteLastCard}>
           Delete card
+        </Button>
+      </Box>
+      <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+        <Button variant="contained" color="success" sx={{ mr: 5 }} onClick={saveStack}>
+          Save stack
         </Button>
       </Box>
     </Container>
