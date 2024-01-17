@@ -8,6 +8,8 @@ import { antiFaro } from "../functions/faroShuffle";
 
 function shuffle(deck, shuffleType) {
 
+    debugger;
+    
     const FARO_IN = 0;
     const FARO_OUT = 1;
 
@@ -29,6 +31,9 @@ export function Body() {
 
     function handleClick() {
         const shuffledDeck = shuffle(myContext.deckOrderState.order, myContext.shuffleConfState);
+
+        console.log("shuffledDeck->", shuffledDeck);
+
         let currentDeckOrderState = { ...myContext.deckOrderState };
         currentDeckOrderState.order = shuffledDeck;
         myContext.updateDeckOrderState(currentDeckOrderState);

@@ -26,6 +26,33 @@ const CardStack = () => {
     setStack([...stack, cardText]);
   };
 
+  const addSuit = () => {
+
+    let suitArray = [];
+
+    for (let i = 1; i <= 13; i++) {
+      let value;
+      switch (i) {
+        case 1:
+          value = 'a';
+          break;
+        case 11:
+          value = 'j';
+          break;
+        case 12:
+          value = 'q';
+          break;
+        case 13:
+          value = 'k';
+          break;
+        default:
+          value = i;
+      }
+      suitArray.push(`${value}${suits}`);
+    }
+    setStack([...stack, ...suitArray]);
+  }
+
   const translateCard = (cardText) => {
     let value, suit;
     if (cardText.length == 3) {
@@ -128,12 +155,15 @@ const CardStack = () => {
         <Button variant="contained" color="success" sx={{ mr: 5 }} onClick={addCard}>
           Add card
         </Button>
-        <Button variant="contained" color="success" onClick={deleteLastCard}>
+        <Button variant="contained" color="success" sx={{ mr: 5 }} onClick={deleteLastCard}>
           Delete card
+        </Button>
+        <Button variant="contained" color="success" onClick={addSuit}>
+          Add suit
         </Button>
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
-        <Button variant="contained" color="success" sx={{ mr: 5 }} onClick={saveStack}>
+        <Button variant="contained" color="success" onClick={saveStack}>
           Save stack
         </Button>
       </Box>
