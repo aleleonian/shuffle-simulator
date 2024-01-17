@@ -10,7 +10,6 @@ export function faroShuffle(deck, type = FARO_OUT) {
 
         if (type === FARO_OUT) {
             firstCard = deck[i];
-            //TODO: there's a bug here in the Math.floor thingy
             secondCard = deck[i + Math.floor(deckLength / 2)];
         }
         else {
