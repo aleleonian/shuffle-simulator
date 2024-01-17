@@ -1,29 +1,34 @@
-const FARO_IN = 0;
-const FARO_OUT = 1;
+export const FARO_IN = 0;
+export const FARO_OUT = 1;
 
 export function faroShuffle(deck, type = FARO_OUT) {
     let shuffledDeck = [];
     const deckLength = deck.length;
-    for (let i = 0; i < deckLength / 2; i++) {
+    const halfDeck = Math.floor(deckLength / 2);
 
+    for (let i = 0; i < halfDeck; i++) {
         let firstCard, secondCard;
 
         if (type === FARO_OUT) {
             firstCard = deck[i];
-            secondCard = deck[i + Math.floor(deckLength / 2)];
-        }
-        else {
+            secondCard = deck[i + halfDeck];
+        } else {
+            firstCard = deck[i + halfDeck];
             secondCard = deck[i];
-            firstCard = deck[i + Math.floor(deckLength / 2)];
         }
 
         shuffledDeck.push(firstCard);
-
         shuffledDeck.push(secondCard);
+    }
+
+    // Handle the remaining card for odd deck length
+    if (deckLength % 2 !== 0) {
+        shuffledDeck.push(deck[deckLength - 1]);
     }
 
     return shuffledDeck;
 }
+
 
 export function antiFaro(deck, type) {
 

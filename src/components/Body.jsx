@@ -8,8 +8,6 @@ import { antiFaro } from "../functions/faroShuffle";
 
 function shuffle(deck, shuffleType) {
 
-    debugger;
-    
     const FARO_IN = 0;
     const FARO_OUT = 1;
 
