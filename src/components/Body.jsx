@@ -3,8 +3,8 @@ import { PokerTable } from "./PokerTable"
 import { ConfigurationInfo } from "./ConfigurationInfo"
 import Button from '@mui/material/Button';
 import { useStateContext } from './StateContext';
-import { faroShuffle } from "../functions/faroShuffle";
-import { antiFaro } from "../functions/faroShuffle";
+import { faroShuffle } from "../functions/shuffles";
+import { antiFaro } from "../functions/shuffles";
 
 function shuffle(deck, shuffleType) {
 

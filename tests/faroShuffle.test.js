@@ -1,8 +1,8 @@
-// tests/faroShuffle.test.js
+// tests/shuffles.test.js
 
 
 describe('Faro Shuffle', () => {
-    const { faroShuffle, FARO_OUT, FARO_IN } = require('../src/functions/faroShuffle');
+    const { faroShuffle, FARO_OUT, FARO_IN } = require('../src/functions/shuffles');
 
     describe('Faro Shuffle', () => {
         it('should perform Out-Faro shuffle of a small even deck length correctly', () => {
