@@ -2,7 +2,7 @@
 
 
 describe('Faro Shuffle', () => {
-    const { faroShuffle, FARO_OUT, FARO_IN } = require('../src/functions/shuffles');
+    const { faroShuffle, FARO_OUT, FARO_IN, antiFaro } = require('../src/functions/shuffles');
 
     describe('Faro Shuffle', () => {
         it('should perform Out-Faro shuffle of a small even deck length correctly', () => {
@@ -29,6 +29,11 @@ describe('Faro Shuffle', () => {
             expect(faroShuffle(inputDeck, FARO_IN)).toEqual(expectedOutput);
         });
 
-        // Add more test cases as needed
+        it('should perform an OUT anti-faro shuffle with uneven deck length correctly', () => {
+            const inputDeck = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+            const expectedOutput = [1, 3, 5, 7, 9, 11, 13, 2, 4, 6, 8, 10, 12];
+            expect(antiFaro(inputDeck, FARO_OUT)).toEqual(expectedOutput);
+        });
+
     });
 });
