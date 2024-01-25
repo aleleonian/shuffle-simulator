@@ -5,7 +5,7 @@ import { stacks } from "../data/deckStacks";
 const StateContext = createContext();
 
 const StateProvider = ({ children }) => {
-    const [deckOrderState, setDeckOrderState] = useState(stacks.find(stack => stack.name == 'newDeckOrder'));
+    const [deckOrderState, setDeckOrderState] = useState({ ...stacks.find(stack => stack.name == 'newDeckOrder') });
     const [shuffleConfState, setShuffleConfState] = useState("faro-out");
 
     const updateDeckOrderState = (newDeckOrderState) => {

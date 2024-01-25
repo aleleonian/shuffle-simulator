@@ -48,3 +48,17 @@ export function antiFaro(deck, type) {
 
     return shuffledDeck;
 }
+
+export function milkShuffle(deck) {
+    const shuffledDeck = [];
+    const deckLength = deck.length;
+
+    for (let i = 0; i < deckLength - 1; i += 2) {
+        shuffledDeck.unshift(deck.pop());
+        shuffledDeck.unshift(deck.shift());
+    }
+    if (deckLength % 2 !== 0) shuffledDeck.unshift(deck[0]);
+
+    return shuffledDeck;
+
+}

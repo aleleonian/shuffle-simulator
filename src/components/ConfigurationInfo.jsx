@@ -16,7 +16,8 @@ export function ConfigurationInfo() {
 
     function deckOrderHandler(event) {
         const chosenOrder = event.target.value;
-        console.log("chosenOrder->", chosenOrder)
+        console.log("chosenOrder->", chosenOrder);
+        debugger;
         switch (chosenOrder) {
             case false:
             case undefined:
@@ -25,14 +26,14 @@ export function ConfigurationInfo() {
                 return setDeckBuilderOpen(true)
         }
 
-        const chosenStack = stacks.find(stack => stack.name == chosenOrder);
+        const chosenStack = { ...stacks.find(stack => stack.name == chosenOrder) };
         console.log("chosenStack->", chosenStack);
         myContext.updateDeckOrderState(chosenStack);
     }
 
     function shuffleConfHandler(event) {
         const chosenShuffle = event.target.value;
-        console.log(chosenShuffle);
+        console.log("chosenShuffle->", chosenShuffle);
         myContext.updateShuffleConfState(chosenShuffle);
     }
 
@@ -48,19 +49,6 @@ export function ConfigurationInfo() {
                 <legend>Shuffle configuration</legend>
                 <ShuffleConfRadioButtons clickHandler={shuffleConfHandler} />
             </Box>
-
-            {/* <TextField
-                label="Deck order"
-                id="do-outlined-start-adornment"
-                sx={{ m: 1, width: '25ch' }}
-                value={myContext.deckOrderState.title}
-            />
-            <TextField
-                label="Shuffle Conf"
-                id="sc-outlined-start-adornment"
-                sx={{ m: 1, width: '25ch' }}
-                value={myContext.shuffleConfState}
-            /> */}
 
             <DeckBuilderDialog open={deckBuilderOpen} handleClose={() => {
                 setDeckBuilderOpen(false);

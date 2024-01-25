@@ -7,8 +7,6 @@ export function PokerTable() {
 
     const myContext = useStateContext();
 
-    console.log("myContext.deckOrderState.order->", myContext.deckOrderState.order);
-
     const fullDeck = createDeck(myContext.deckOrderState.order);
 
     return (
