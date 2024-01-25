@@ -41,6 +41,7 @@ export function antiFaro(deck, type) {
         firstHalf.push(firstCard);
         secondHalf.push(secondCard);
     }
+    //TODO: not sure this is correct
     if (deckLength % 2 !== 0) firstHalf.push(deck[deckLength - 1]);
 
     let shuffledDeck = firstHalf.concat(secondHalf);

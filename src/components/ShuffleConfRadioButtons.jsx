@@ -30,6 +30,17 @@ export function ShuffleConfRadioButtons({ clickHandler }) {
             >
                 <FormControlLabel value="anti-faro-in" onChange={clickHandler} control={<Radio checked={chosenShuffle === "anti-faro-in" ? true : false} />} label="Anti-faro IN" />
                 <FormControlLabel value="anti-faro-out" onChange={clickHandler} control={<Radio checked={chosenShuffle === "anti-faro-out" ? true : false} />} label="Anti-faro OUT" />
+
+            </RadioGroup>
+
+            <Divider variant="middle" flexItem />
+
+            <RadioGroup
+                row
+                aria-labelledby="demo-row-radio-buttons-group-label"
+                name="row-radio-buttons-group"
+            >
+                <FormControlLabel value="milk" onChange={clickHandler} control={<Radio checked={chosenShuffle === "milk" ? true : false} />} label="Milk" />
             </RadioGroup>
 
         </FormControl>
