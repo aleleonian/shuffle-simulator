@@ -17,7 +17,8 @@ export function ConfigurationInfo() {
     function deckOrderHandler(event) {
         const chosenOrder = event.target.value;
         console.log("chosenOrder->", chosenOrder);
-        debugger;
+        ;
+        
         switch (chosenOrder) {
             case false:
             case undefined:

@@ -30,7 +30,7 @@ export function Body() {
     const myContext = useStateContext();
 
     function handleClick() {
-        debugger;
+        
         const shuffledDeck = shuffle(myContext.deckOrderState.order, myContext.shuffleConfState);
 
         console.log("shuffledDeck->", shuffledDeck);

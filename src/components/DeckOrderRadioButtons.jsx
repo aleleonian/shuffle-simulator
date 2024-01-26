@@ -9,6 +9,10 @@ export function DeckOrderRadioButtons({ clickHandler }) {
 
     const chosenDeckOrder = useStateContext().deckOrderState.name;
 
+    console.log("chosenDeckOrder->", chosenDeckOrder);
+
+    ;
+
     return (
         <FormControl>
             <RadioGroup
