@@ -1,6 +1,4 @@
 import * as React from 'react';
-import { useStateContext } from './StateContext';
-import { stacks } from '../data/deckStacks';
 import { PokerCardBuilderDialog } from './PokerCardBuilderDialog';
 
 export function DeckBuilderDialog({ open, handleClose }) {

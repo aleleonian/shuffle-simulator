@@ -97,7 +97,7 @@ const CardStack = () => {
   return (
     <Container sx={{ margin: '100px auto', textAlign: 'center' }}>
       <Typography variant="h5" gutterBottom>Stack:</Typography>
-      <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2, flexWrap: 'wrap'}}>
         {/* <Typography variant="body1">{stack.join(', ')}</Typography> */}
         {stack.map((card, index) => (
           <React.Fragment key={index}>{translateCard(card)}</React.Fragment>
