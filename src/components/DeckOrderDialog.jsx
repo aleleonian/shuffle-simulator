@@ -29,6 +29,8 @@ export default function DeckOrderDialog({ open, handleClose }) {
     if (!chosenOrder || chosenOrder == "other") return;
     const chosenStack = { ...stacks.find(stack => stack.name == chosenOrder) };
     console.log("chosenStack->", chosenStack);
+    
+
     myContext.updateDeckOrderState(chosenStack);
   }
   return (

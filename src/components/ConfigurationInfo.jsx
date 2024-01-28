@@ -29,6 +29,7 @@ export function ConfigurationInfo() {
 
         const chosenStack = { ...stacks.find(stack => stack.name == chosenOrder) };
         console.log("chosenStack->", chosenStack);
+        
         myContext.updateDeckOrderState(chosenStack);
     }
 

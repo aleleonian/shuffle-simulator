@@ -31,12 +31,14 @@ export function Body() {
 
     function handleClick() {
         
-        const shuffledDeck = shuffle(myContext.deckOrderState.order, myContext.shuffleConfState);
+        
+        const shuffledDeck = shuffle([...myContext.deckOrderState.order], myContext.shuffleConfState);
 
         console.log("shuffledDeck->", shuffledDeck);
 
         let currentDeckOrderState = { ...myContext.deckOrderState };
         currentDeckOrderState.order = shuffledDeck;
+        
         myContext.updateDeckOrderState(currentDeckOrderState);
     }
 
