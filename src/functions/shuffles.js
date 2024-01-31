@@ -46,7 +46,6 @@ export function antiFaro(deck, type) {
         else secondHalf.push(deck[deckLength - 1]);
     }
 
-
     let shuffledDeck = firstHalf.concat(secondHalf);
 
     return shuffledDeck;
