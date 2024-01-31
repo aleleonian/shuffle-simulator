@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import { FormControl, InputLabel, Select, MenuItem, Button, Typography, Box, Container } from '@mui/material';
 import { useStateContext } from './StateContext';
+import { AlertAlert } from './AlertAlert';
 
 const CardStack = () => {
   const [values, setValues] = useState('');
   const [suits, setSuits] = useState('');
   const [stack, setStack] = useState([]);
+  const [errorAlert, setErrorAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+
   const myContext = useStateContext();
 
   const Emoji = React.memo(({ label, symbol }) =>
@@ -20,14 +24,34 @@ const CardStack = () => {
     myContext.updateDeckOrderState(currentDeckOrderState);
   }
 
+  const deleteAlertInFive = () => {
+    setTimeout(() => {
+      setErrorAlert(false);
+    }, 5000)
+  }
+
   const addCard = () => {
 
     const cardText = `${values}${suits}`;
 
+    if (values === "" || suits === "") {
+      setAlertMessage("You have to pick a value and a suit 😒");
+      setErrorAlert(true);
+      deleteAlertInFive();
+      return
+    }
     setStack([...stack, cardText]);
   };
 
   const addSuit = () => {
+
+    
+    if (suits === "") {
+      setAlertMessage("You have to pick a suit, dummy! 😒");
+      setErrorAlert(true);
+      deleteAlertInFive();
+      return
+    }
 
     let suitArray = [];
 
@@ -97,11 +121,16 @@ const CardStack = () => {
   return (
     <Container sx={{ margin: '100px auto', textAlign: 'center' }}>
       <Typography variant="h5" gutterBottom>Stack:</Typography>
-      <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2, flexWrap: 'wrap'}}>
-        {/* <Typography variant="body1">{stack.join(', ')}</Typography> */}
-        {stack.map((card, index) => (
-          <React.Fragment key={index}>{translateCard(card)}</React.Fragment>
-        ))}
+      {errorAlert ? <AlertAlert severity="error" message={alertMessage} /> : ""}
+      <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2, flexWrap: 'wrap' }}>
+        {
+          stack.length > 0 ?
+            stack.map((card, index) => (
+              <React.Fragment key={index}>{translateCard(card)}</React.Fragment>
+            ))
+            :
+            "(Empty)"
+        }
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <FormControl sx={{ m: 1, minWidth: 120 }}>
