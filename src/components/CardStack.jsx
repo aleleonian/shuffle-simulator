@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { FormControl, InputLabel, Select, MenuItem, Button, Typography, Box, Container } from '@mui/material';
 import { useStateContext } from './StateContext';
 import { AlertAlert } from './AlertAlert';
+import { FormPropsTextFields } from './FormPropsTextFields';
+import { isValidPlayingCard } from '../functions/shuffles';
 
 const CardStack = () => {
   const [values, setValues] = useState('');
@@ -24,13 +26,35 @@ const CardStack = () => {
     myContext.updateDeckOrderState(currentDeckOrderState);
   }
 
+  const processInput = () => {
+    return document.getElementById('typed-card').value;
+  }
+
   const deleteAlertInFive = () => {
     setTimeout(() => {
       setErrorAlert(false);
     }, 5000)
   }
 
+
+
+
   const addCard = () => {
+
+    const userInput = processInput();
+
+    if (userInput != "") {
+      const isValid = isValidPlayingCard(userInput);
+      if (!isValid) {
+        setAlertMessage("You have to type a card such as 'ah' for the ace of hearts 😒");
+        setErrorAlert(true);
+        return;
+      }
+      else {
+        setStack([...stack, userInput]);
+        return;
+      }
+    }
 
     const cardText = `${values}${suits}`;
 
@@ -45,7 +69,6 @@ const CardStack = () => {
 
   const addSuit = () => {
 
-    
     if (suits === "") {
       setAlertMessage("You have to pick a suit, dummy! 😒");
       setErrorAlert(true);
@@ -179,6 +202,9 @@ const CardStack = () => {
             <MenuItem value="s">S</MenuItem>
             <MenuItem value="d">D</MenuItem>
           </Select>
+        </FormControl>
+        <FormControl sx={{ m: 1, minWidth: 120 }}>
+          <FormPropsTextFields elementId={'typed-card'} />
         </FormControl>
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
