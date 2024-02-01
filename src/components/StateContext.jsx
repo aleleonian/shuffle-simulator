@@ -9,8 +9,6 @@ const StateProvider = ({ children }) => {
     const [shuffleConfState, setShuffleConfState] = useState("faro-out");
 
     const updateDeckOrderState = (newDeckOrderState) => {
-        
-        console.log("deckOrderState before update->", deckOrderState)
         setDeckOrderState(newDeckOrderState);
     };
     const updateShuffleConfState = (newShuffleConfState) => {

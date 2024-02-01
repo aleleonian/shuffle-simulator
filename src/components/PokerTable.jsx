@@ -11,9 +11,9 @@ export function PokerTable() {
 
     fullDeck = fullDeck.map((cardElement, index) => {
         return (
-            <div className='poker-table-card'>
-                <div id="position">{index + 1}</div>
+            <div key={index} className='poker-table-card'>
                 <div>{cardElement}</div>
+                <div id="position">{index + 1}</div>
             </div>
         )
     });

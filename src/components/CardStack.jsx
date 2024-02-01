@@ -22,6 +22,7 @@ const CardStack = () => {
   const saveStack = () => {
     let currentDeckOrderState = { ...myContext.deckOrderState };
     currentDeckOrderState.order = stack;
+    currentDeckOrderState.backup = stack;
     currentDeckOrderState.name = "other";
     myContext.updateDeckOrderState(currentDeckOrderState);
   }

@@ -6,7 +6,7 @@ import { DeckBuilderDialog } from './DeckBuilderDialog';
 
 import { stacks } from '../data/deckStacks';
 
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 
 export function ConfigurationInfo() {
 
@@ -14,11 +14,24 @@ export function ConfigurationInfo() {
 
     const [deckBuilderOpen, setDeckBuilderOpen] = React.useState(false);
 
+    function resetDeckOrder() {
+        const chosenOrder = myContext.deckOrderState.name;
+        let chosenStack;
+        // debugger;
+        if (chosenOrder == "other") {
+            chosenStack = { ...myContext.deckOrderState };
+            chosenStack.order = [...chosenStack.backup];
+        }
+        else {
+            chosenStack = { ...stacks.find(stack => stack.name == chosenOrder) };
+        }
+
+        myContext.updateDeckOrderState(chosenStack);
+    }
+
     function deckOrderHandler(event) {
         const chosenOrder = event.target.value;
-        console.log("chosenOrder->", chosenOrder);
-        ;
-        
+
         switch (chosenOrder) {
             case false:
             case undefined:
@@ -28,14 +41,12 @@ export function ConfigurationInfo() {
         }
 
         const chosenStack = { ...stacks.find(stack => stack.name == chosenOrder) };
-        console.log("chosenStack->", chosenStack);
-        
+
         myContext.updateDeckOrderState(chosenStack);
     }
 
     function shuffleConfHandler(event) {
         const chosenShuffle = event.target.value;
-        console.log("chosenShuffle->", chosenShuffle);
         myContext.updateShuffleConfState(chosenShuffle);
     }
 
@@ -45,6 +56,12 @@ export function ConfigurationInfo() {
             <Box component="fieldset" sx={{ m: 1, width: '25ch' }}>
                 <legend>Deck order configuration</legend>
                 <DeckOrderRadioButtons clickHandler={deckOrderHandler} />
+                <Button
+                    color="success"
+                    variant="contained"
+                    onClick={resetDeckOrder}
+                    size="small">
+                    Reset</Button>
             </Box>
 
             <Box component="fieldset" sx={{ m: 1, width: '25ch' }}>
