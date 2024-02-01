@@ -11,6 +11,7 @@ const CardStack = () => {
   const [stack, setStack] = useState([]);
   const [errorAlert, setErrorAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
+  const [checkedItems, setCheckedItems] = useState({});
 
   const myContext = useStateContext();
 
@@ -36,9 +37,6 @@ const CardStack = () => {
       setErrorAlert(false);
     }, 5000)
   }
-
-
-
 
   const addCard = () => {
 
@@ -135,12 +133,22 @@ const CardStack = () => {
     return cardElement;
 
   }
-  const deleteLastCard = () => {
+  const deleteCards = () => {
     if (stack.length > 0) {
       const updatedStack = [...stack];
-      updatedStack.pop();
+      Object.keys(checkedItems).forEach(cardIndexToBeRemoved => {
+        updatedStack.splice(cardIndexToBeRemoved, 1);
+      })
       setStack(updatedStack);
     }
+  };
+
+  const handleCheckboxChange = (event) => {
+    const { name, checked } = event.target;
+    setCheckedItems({
+      ...checkedItems,
+      [name]: checked,
+    });
   };
 
   return (
@@ -151,7 +159,14 @@ const CardStack = () => {
         {
           stack.length > 0 ?
             stack.map((card, index) => (
-              <React.Fragment key={index}>{translateCard(card)}</React.Fragment>
+              <div key={index} className='stack-builder-card'>
+                <div>
+                  {translateCard(card)}
+                </div>
+                <div>
+                  <input type="checkbox" id={index} name={index} onChange={handleCheckboxChange}  checked={checkedItems[index] || false}/>
+                </div>
+              </div>
             ))
             :
             "(Empty)"
@@ -213,8 +228,8 @@ const CardStack = () => {
         <Button variant="contained" color="success" sx={{ mr: 5 }} onClick={addCard}>
           Add card
         </Button>
-        <Button variant="contained" color="success" sx={{ mr: 5 }} onClick={deleteLastCard}>
-          Delete card
+        <Button variant="contained" color="success" sx={{ mr: 5 }} onClick={deleteCards}>
+          Delete card(s)
         </Button>
         <Button variant="contained" color="success" onClick={addSuit}>
           Add suit

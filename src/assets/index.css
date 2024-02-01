@@ -59,6 +59,9 @@ body {
   display: flex;
   flex-direction: column;
 }
+.stack-builder-card {
+  margin: 5px;
+}
 
 #position {
   text-align: center;
