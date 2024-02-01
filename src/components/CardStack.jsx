@@ -102,6 +102,7 @@ const CardStack = () => {
   }
 
   const translateCard = (cardText) => {
+    cardText = cardText.toUpperCase();
     let value, suit;
     if (cardText.length == 3) {
       value = cardText[0];
@@ -112,16 +113,16 @@ const CardStack = () => {
     suit = cardText[cardText.length - 1];
 
     switch (suit) {
-      case 'c':
+      case 'C':
         suit = <span>&#x2663;&#xFE0F;</span>;
         break;
-      case 'h':
+      case 'H':
         suit = <span>&#x2764;&#xFE0F;</span>;
         break;
-      case 's':
+      case 'S':
         suit = <span>&#x2660;&#xFE0F;</span>;
         break;
-      case 'd':
+      case 'D':
         suit = <span>&#x1F538;</span>;
         break;
     }
