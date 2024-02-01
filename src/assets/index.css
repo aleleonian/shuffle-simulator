@@ -54,3 +54,12 @@ body {
   display: flex;
   justify-content: center;
 }
+
+.poker-table-card {
+  display: flex;
+  flex-direction: column;
+}
+
+#position {
+  text-align: left;
+}
