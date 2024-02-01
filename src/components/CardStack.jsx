@@ -133,11 +133,20 @@ const CardStack = () => {
     return cardElement;
 
   }
+  const isACheckedItem = (index) => {
+    const checkedItemsIndeces = Object.keys(checkedItems);
+    for (let i = 0; i < checkedItemsIndeces.length; i++) {
+      if (checkedItemsIndeces[i] == index) return true;
+    }
+    return false;
+  }
+
   const deleteCards = () => {
     if (stack.length > 0) {
       const updatedStack = [...stack];
       Object.keys(checkedItems).forEach(cardIndexToBeRemoved => {
         updatedStack.splice(cardIndexToBeRemoved, 1);
+        delete checkedItems[cardIndexToBeRemoved];
       })
       setStack(updatedStack);
     }
@@ -164,7 +173,7 @@ const CardStack = () => {
                   {translateCard(card)}
                 </div>
                 <div>
-                  <input type="checkbox" id={index} name={index} onChange={handleCheckboxChange}  checked={checkedItems[index] || false}/>
+                  <input type="checkbox" id={index} name={index} onChange={handleCheckboxChange} checked={isACheckedItem(index)} />
                 </div>
               </div>
             ))
