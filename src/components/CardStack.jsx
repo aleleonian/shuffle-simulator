@@ -5,10 +5,9 @@ import { AlertAlert } from './AlertAlert';
 import { FormPropsTextFields } from './FormPropsTextFields';
 import { isValidPlayingCard } from '../functions/shuffles';
 
-const CardStack = () => {
+const CardStack = ({stack, setStack}) => {
   const [values, setValues] = useState('');
   const [suits, setSuits] = useState('');
-  const [stack, setStack] = useState([]);
   const [errorAlert, setErrorAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [checkedItems, setCheckedItems] = useState({});
@@ -167,7 +166,7 @@ const CardStack = () => {
   };
 
   return (
-    <Container sx={{ margin: '50px 0', textAlign: 'center' }}>
+    <Container sx={{ margin: '0 0', textAlign: 'center' }}>
       <Typography variant="h5" gutterBottom>Stack:</Typography>
       {errorAlert ? <AlertAlert severity="error" message={alertMessage} /> : ""}
       <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2, flexWrap: 'wrap' }}>
