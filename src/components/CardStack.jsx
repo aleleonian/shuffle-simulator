@@ -134,11 +134,9 @@ const CardStack = () => {
 
   }
   const isACheckedItem = (index) => {
-    const checkedItemsIndeces = Object.keys(checkedItems);
-    for (let i = 0; i < checkedItemsIndeces.length; i++) {
-      if (checkedItemsIndeces[i] == index) return true;
-    }
-    return false;
+    debugger;
+    if(!checkedItems[`${index}`]) return false;
+    return checkedItems[`${index}`];
   }
 
   const deleteCards = () => {
@@ -154,6 +152,7 @@ const CardStack = () => {
 
   const handleCheckboxChange = (event) => {
     const { name, checked } = event.target;
+    debugger;
     setCheckedItems({
       ...checkedItems,
       [name]: checked,
