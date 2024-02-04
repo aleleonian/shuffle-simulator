@@ -17,7 +17,6 @@ export function ConfigurationInfo() {
     function resetDeckOrder() {
         const chosenOrder = myContext.deckOrderState.name;
         let chosenStack;
-        // debugger;
         if (chosenOrder == "other") {
             chosenStack = { ...myContext.deckOrderState };
             chosenStack.order = [...chosenStack.backup];

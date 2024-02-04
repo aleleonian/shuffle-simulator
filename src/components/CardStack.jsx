@@ -47,6 +47,7 @@ const CardStack = () => {
       if (!isValid) {
         setAlertMessage("You have to type a card such as 'ah' for the ace of hearts 😒");
         setErrorAlert(true);
+        deleteAlertInFive();
         return;
       }
       else {
@@ -134,8 +135,7 @@ const CardStack = () => {
 
   }
   const isACheckedItem = (index) => {
-    debugger;
-    if(!checkedItems[`${index}`]) return false;
+    if (!checkedItems[`${index}`]) return false;
     return checkedItems[`${index}`];
   }
 
@@ -152,15 +152,22 @@ const CardStack = () => {
 
   const handleCheckboxChange = (event) => {
     const { name, checked } = event.target;
-    debugger;
     setCheckedItems({
       ...checkedItems,
       [name]: checked,
     });
   };
 
+  const handleTextBoxChage = (event) => {
+    if (event.key === 'Enter') {
+      // Handle the 'Enter' key press here, e.g., submit a form, trigger an action, etc.
+      addCard();
+      return document.getElementById('typed-card').value = "";
+    }
+  };
+
   return (
-    <Container sx={{ margin: '100px auto', textAlign: 'center' }}>
+    <Container sx={{ margin: '50px 0', textAlign: 'center' }}>
       <Typography variant="h5" gutterBottom>Stack:</Typography>
       {errorAlert ? <AlertAlert severity="error" message={alertMessage} /> : ""}
       <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2, flexWrap: 'wrap' }}>
@@ -229,7 +236,7 @@ const CardStack = () => {
           </Select>
         </FormControl>
         <FormControl sx={{ m: 1, minWidth: 120 }}>
-          <FormPropsTextFields elementId={'typed-card'} />
+          <FormPropsTextFields elementId={'typed-card'} handleKeyPress={handleTextBoxChage} />
         </FormControl>
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>

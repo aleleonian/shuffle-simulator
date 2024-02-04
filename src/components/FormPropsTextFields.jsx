@@ -1,13 +1,14 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
-export function FormPropsTextFields({ elementId }) {
+export function FormPropsTextFields({ elementId, handleKeyPress }) {
+
   return (
     <React.Fragment >
       <TextField
         id={elementId}
         label="Type it"
+        onKeyPress={handleKeyPress}
       />
     </React.Fragment >
   );
