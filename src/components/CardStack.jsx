@@ -20,6 +20,7 @@ const CardStack = ({stack, setStack}) => {
     </span>)
 
   const saveStack = () => {
+    debugger;
     let currentDeckOrderState = { ...myContext.deckOrderState };
     currentDeckOrderState.order = stack;
     currentDeckOrderState.backup = stack;
