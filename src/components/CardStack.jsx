@@ -14,16 +14,11 @@ const CardStack = ({stack, setStack}) => {
 
   const myContext = useStateContext();
 
-  const Emoji = React.memo(({ label, symbol }) =>
-    <span role="img" aria-label={label}>
-      {String.fromCodePoint(symbol)}
-    </span>)
-
   const saveStack = () => {
-    debugger;
     let currentDeckOrderState = { ...myContext.deckOrderState };
     currentDeckOrderState.order = stack;
-    currentDeckOrderState.backup = stack;
+    //TODO: what was this exactly?
+    // currentDeckOrderState.backup = stack;
     currentDeckOrderState.name = "other";
     myContext.updateDeckOrderState(currentDeckOrderState);
   }

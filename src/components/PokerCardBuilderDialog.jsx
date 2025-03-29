@@ -3,16 +3,18 @@ import { Dialog, DialogTitle, DialogContent, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import CardStack from './CardStack.jsx';
 import { CloseConfirmation } from './CloseConfirmation.jsx';
+import { useStateContext } from './StateContext';
 
 export const PokerCardBuilderDialog = ({ open, onClose }) => {
 
     const [stack, setStack] = useState([]);
     const [showConfirmation, setShowConfirmation] = useState(false);
 
+    const myContext = useStateContext();
+
     const handleClose = () => {
         // if the stack is being built
-        debugger;
-        if (stack.length > 0) {
+        if (stack.length < 1) {
             setShowConfirmation(true);
         }
         else onClose();

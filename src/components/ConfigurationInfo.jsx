@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useStateContext } from './StateContext';
 import { DeckOrderRadioButtons } from './DeckOrderRadioButtons';
 import { ShuffleConfRadioButtons } from './ShuffleConfRadioButtons';
@@ -13,13 +13,16 @@ export function ConfigurationInfo() {
     const myContext = useStateContext();
 
     const [deckBuilderOpen, setDeckBuilderOpen] = React.useState(false);
-
+    const [deckOrderConfigurationButtonText, setDeckOrderConfigurationButtonText] = useState("Reset");
     function resetDeckOrder() {
         const chosenOrder = myContext.deckOrderState.name;
         let chosenStack;
         if (chosenOrder == "other") {
+            debugger;
             chosenStack = { ...myContext.deckOrderState };
-            chosenStack.order = [...chosenStack.backup];
+            // chosenStack.order = [...chosenStack.backup];
+            //here we gotta open the dialog
+            setDeckBuilderOpen(true);
         }
         else {
             chosenStack = { ...stacks.find(stack => stack.name == chosenOrder) };
@@ -47,7 +50,11 @@ export function ConfigurationInfo() {
             case undefined:
                 return;
             case 'other':
-                return setDeckBuilderOpen(true)
+                //change 'reset' to 'edit'
+                setDeckOrderConfigurationButtonText('Edit');
+                return setDeckBuilderOpen(true);
+            default:
+                if (deckOrderConfigurationButtonText === 'Edit') setDeckOrderConfigurationButtonText('Reset');
         }
 
 
@@ -69,7 +76,7 @@ export function ConfigurationInfo() {
                     variant="contained"
                     onClick={resetDeckOrder}
                     size="small">
-                    Reset</Button>
+                    {deckOrderConfigurationButtonText}</Button>
             </Box>
 
             <Box component="fieldset" sx={{ m: 1, width: '25ch' }}>
