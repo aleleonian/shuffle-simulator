@@ -36,7 +36,6 @@ const CardStack = ({ stack, setStack }) => {
   const addCard = () => {
 
     const userInput = processInput();
-
     if (userInput != "") {
       const isValid = isValidPlayingCard(userInput);
       if (!isValid) {
@@ -104,26 +103,25 @@ const CardStack = ({ stack, setStack }) => {
       value += cardText[1];
     }
     else value = cardText[0];
-
     suit = cardText[cardText.length - 1];
-
+    let suitICON;
     switch (suit) {
       case 'C':
-        suit = <span>&#x2663;&#xFE0F;</span>;
+        suitICON = <span>&#x2663;&#xFE0F;</span>;
         break;
       case 'H':
-        suit = <span>&#x2764;&#xFE0F;</span>;
+        suitICON = <span>&#x2764;&#xFE0F;</span>;
         break;
       case 'S':
-        suit = <span>&#x2660;&#xFE0F;</span>;
+        suitICON = <span>&#x2660;&#xFE0F;</span>;
         break;
       case 'D':
-        suit = <span>&#x1F538;</span>;
+        suitICON = <span>&#x1F538;</span>;
         break;
     }
     const cardElement = (
       <div key={stack.length}>
-        {value} {suit}
+        {value} {suitICON.props.children}
       </div>
     );
     return cardElement;
