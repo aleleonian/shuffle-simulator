@@ -7,8 +7,16 @@ export function PokerTable() {
 
     const myContext = useStateContext();
 
-    
-    const fullDeck = createDeck([...myContext.deckOrderState.order]);
+    let fullDeck = createDeck([...myContext.deckOrderState.order]);
+
+    fullDeck = fullDeck.map((cardElement, index) => {
+        return (
+            <div key={index} className='poker-table-card'>
+                <div>{cardElement}</div>
+                <div id="position">{index + 1}</div>
+            </div>
+        )
+    });
 
     return (
         <div className="poker-table">

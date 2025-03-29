@@ -29,6 +29,43 @@ export function faroShuffle(deck, type = FARO_OUT) {
     return shuffledDeck;
 }
 
+export function isValidPlayingCard(card) {
+    // Define valid ranks and suits
+    const validRanks = ['a', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'j', 'q', 'k'];
+    const validSuits = ['c', 'h', 's', 'd'];
+
+    // Check if the card string has a valid length
+    if (card.length !== 2 && card.length !== 3) {
+      return false;
+    }
+
+    // Extract rank and suit from the card string
+    let rank, suit;
+    if (card.length === 2) {
+      rank = card.charAt(0).toLowerCase();
+      suit = card.charAt(1).toLowerCase();
+    } else {
+      rank = card.substring(0, 2).toLowerCase();
+      suit = card.charAt(2).toLowerCase();
+    }
+
+    // Validate the rank and suit
+    if (!validRanks.includes(rank) || !validSuits.includes(suit)) {
+      return false;
+    }
+
+    // If the rank is 'a', 'j', 'q', or 'k', it's valid
+    if (rank === 'a' || rank === 'j' || rank === 'q' || rank === 'k') {
+      return true;
+    }
+
+    // Check if the rank is a number and lies between 1 and 10
+    if (!isNaN(rank) && parseInt(rank) >= 1 && parseInt(rank) <= 10) {
+      return true;
+    }
+
+    return false;
+  }
 
 export function antiFaro(deck, type) {
     const firstHalf = [];

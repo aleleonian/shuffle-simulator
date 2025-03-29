@@ -1,33 +1,75 @@
 import React, { useState } from 'react';
 import { FormControl, InputLabel, Select, MenuItem, Button, Typography, Box, Container } from '@mui/material';
 import { useStateContext } from './StateContext';
+import { AlertAlert } from './AlertAlert';
+import { FormPropsTextFields } from './FormPropsTextFields';
+import { isValidPlayingCard } from '../functions/shuffles';
 
-const CardStack = () => {
+const CardStack = ({ stack, setStack }) => {
   const [values, setValues] = useState('');
   const [suits, setSuits] = useState('');
-  const [stack, setStack] = useState([]);
-  const myContext = useStateContext();
+  const [errorAlert, setErrorAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+  const [checkedItems, setCheckedItems] = useState({});
 
-  const Emoji = React.memo(({ label, symbol }) =>
-    <span role="img" aria-label={label}>
-      {String.fromCodePoint(symbol)}
-    </span>)
+  const myContext = useStateContext();
 
   const saveStack = () => {
     let currentDeckOrderState = { ...myContext.deckOrderState };
     currentDeckOrderState.order = stack;
+    //TODO: what was this exactly?
+    // currentDeckOrderState.backup = stack;
     currentDeckOrderState.name = "other";
     myContext.updateDeckOrderState(currentDeckOrderState);
   }
 
+  const processInput = () => {
+    return document.getElementById('typed-card').value;
+  }
+
+  const deleteAlertInFive = () => {
+    setTimeout(() => {
+      setErrorAlert(false);
+    }, 5000)
+  }
+
   const addCard = () => {
+
+    const userInput = processInput();
+
+    if (userInput != "") {
+      const isValid = isValidPlayingCard(userInput);
+      if (!isValid) {
+        setAlertMessage("You have to type a card such as 'ah' for the ace of hearts 😒");
+        setErrorAlert(true);
+        deleteAlertInFive();
+        return;
+      }
+      else {
+        setStack([...stack, userInput]);
+        return;
+      }
+    }
 
     const cardText = `${values}${suits}`;
 
+    if (values === "" || suits === "") {
+      setAlertMessage("You have to pick a value and a suit 😒");
+      setErrorAlert(true);
+      deleteAlertInFive();
+      return
+    }
     setStack([...stack, cardText]);
   };
 
   const addSuit = () => {
+
+    if (suits === "") {
+      setAlertMessage("You have to pick a suit, dummy! 😒");
+      setErrorAlert(true);
+      deleteAlertInFive();
+      return
+    }
 
     let suitArray = [];
 
@@ -55,6 +97,7 @@ const CardStack = () => {
   }
 
   const translateCard = (cardText) => {
+    cardText = cardText.toUpperCase();
     let value, suit;
     if (cardText.length == 3) {
       value = cardText[0];
@@ -65,16 +108,16 @@ const CardStack = () => {
     suit = cardText[cardText.length - 1];
 
     switch (suit) {
-      case 'c':
+      case 'C':
         suit = <span>&#x2663;&#xFE0F;</span>;
         break;
-      case 'h':
+      case 'H':
         suit = <span>&#x2764;&#xFE0F;</span>;
         break;
-      case 's':
+      case 'S':
         suit = <span>&#x2660;&#xFE0F;</span>;
         break;
-      case 'd':
+      case 'D':
         suit = <span>&#x1F538;</span>;
         break;
     }
@@ -86,22 +129,58 @@ const CardStack = () => {
     return cardElement;
 
   }
-  const deleteLastCard = () => {
+  const isACheckedItem = (index) => {
+    if (!checkedItems[`${index}`]) return false;
+    return checkedItems[`${index}`];
+  }
+
+  const deleteCards = () => {
     if (stack.length > 0) {
       const updatedStack = [...stack];
-      updatedStack.pop();
+      Object.keys(checkedItems).forEach(cardIndexToBeRemoved => {
+        updatedStack.splice(cardIndexToBeRemoved, 1);
+        delete checkedItems[cardIndexToBeRemoved];
+      })
       setStack(updatedStack);
     }
   };
 
+  const handleCheckboxChange = (event) => {
+    const { name, checked } = event.target;
+    setCheckedItems({
+      ...checkedItems,
+      [name]: checked,
+    });
+  };
+
+  const handleTextBoxChage = (event) => {
+    if (event.key === 'Enter') {
+      // Handle the 'Enter' key press here, e.g., submit a form, trigger an action, etc.
+      addCard();
+      return document.getElementById('typed-card').value = "";
+    }
+  };
+
   return (
-    <Container sx={{ margin: '100px auto', textAlign: 'center' }}>
+    <Container sx={{ margin: '0 0', textAlign: 'center' }}>
       <Typography variant="h5" gutterBottom>Stack:</Typography>
-      <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2, flexWrap: 'wrap'}}>
-        {/* <Typography variant="body1">{stack.join(', ')}</Typography> */}
-        {stack.map((card, index) => (
-          <React.Fragment key={index}>{translateCard(card)}</React.Fragment>
-        ))}
+      {errorAlert ? <AlertAlert severity="error" message={alertMessage} /> : ""}
+      <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2, flexWrap: 'wrap' }}>
+        {
+          stack.length > 0 ?
+            stack.map((card, index) => (
+              <div key={index} className='stack-builder-card'>
+                <div>
+                  {translateCard(card)}
+                </div>
+                <div>
+                  <input type="checkbox" id={index} name={index} onChange={handleCheckboxChange} checked={isACheckedItem(index)} />
+                </div>
+              </div>
+            ))
+            :
+            "(Empty)"
+        }
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <FormControl sx={{ m: 1, minWidth: 120 }}>
@@ -151,13 +230,16 @@ const CardStack = () => {
             <MenuItem value="d">D</MenuItem>
           </Select>
         </FormControl>
+        <FormControl sx={{ m: 1, minWidth: 120 }}>
+          <FormPropsTextFields elementId={'typed-card'} handleKeyPress={handleTextBoxChage} />
+        </FormControl>
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
         <Button variant="contained" color="success" sx={{ mr: 5 }} onClick={addCard}>
           Add card
         </Button>
-        <Button variant="contained" color="success" sx={{ mr: 5 }} onClick={deleteLastCard}>
-          Delete card
+        <Button variant="contained" color="success" sx={{ mr: 5 }} onClick={deleteCards}>
+          Delete card(s)
         </Button>
         <Button variant="contained" color="success" onClick={addSuit}>
           Add suit
