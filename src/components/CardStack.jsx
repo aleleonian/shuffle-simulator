@@ -5,7 +5,7 @@ import { AlertAlert } from './AlertAlert';
 import { FormPropsTextFields } from './FormPropsTextFields';
 import { isValidPlayingCard } from '../functions/shuffles';
 
-const CardStack = ({stack, setStack}) => {
+const CardStack = ({ stack, setStack }) => {
   const [values, setValues] = useState('');
   const [suits, setSuits] = useState('');
   const [errorAlert, setErrorAlert] = useState(false);

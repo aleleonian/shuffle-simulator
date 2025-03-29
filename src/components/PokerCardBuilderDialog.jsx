@@ -12,9 +12,18 @@ export const PokerCardBuilderDialog = ({ open, onClose }) => {
 
     const myContext = useStateContext();
 
+    const areEqual = (a, b) => {
+        return (
+            Array.isArray(a) &&
+            Array.isArray(b) &&
+            a.length === b.length &&
+            a.every((val, index) => val === b[index])
+        );
+    };
+
     const handleClose = () => {
-        // if the stack is being built
-        if (stack.length < 1) {
+        let currentDeckOrderState = { ...myContext.deckOrderState };
+        if (!areEqual(stack, currentDeckOrderState.order)) {
             setShowConfirmation(true);
         }
         else onClose();

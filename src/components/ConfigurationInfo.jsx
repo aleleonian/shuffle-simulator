@@ -18,7 +18,6 @@ export function ConfigurationInfo() {
         const chosenOrder = myContext.deckOrderState.name;
         let chosenStack;
         if (chosenOrder == "other") {
-            debugger;
             chosenStack = { ...myContext.deckOrderState };
             // chosenStack.order = [...chosenStack.backup];
             //here we gotta open the dialog
@@ -32,7 +31,6 @@ export function ConfigurationInfo() {
     }
 
     function deckOrderHandler(event) {
-        debugger;
         const chosenOrder = event.target.value;
         let chosenStack = { ...stacks.find(stack => stack.name == chosenOrder) };
         //chosenStack can be an empty object if 'custom' is chosen for the first time.
